@@ -35,10 +35,12 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
     compile group: 'net.bull.javamelody', name: 'javamelody-spring-boot-starter', version: '1.72.0'
-    // TODO uncomment the following line to reproduce the issue
+    // TODO uncomment the following line to reproduce the issue (when HikariCP is selected)
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client'
 
     runtime('com.h2database:h2')
-    
+    // Alternative connection pool that doesn't cause the problem described in the issue
+    runtime group: 'org.apache.tomcat', name: 'tomcat-jdbc', version: '8.5.29'
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
